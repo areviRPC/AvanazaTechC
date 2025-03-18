@@ -55,7 +55,6 @@ void menos_verde (unsigned char colores){
 int main()
 {
     operacion(AZUL | VERDE | PARDO);
-    menos_verde(AZUL | VERDE | AMARILLO);
     return 0;
 
 }
