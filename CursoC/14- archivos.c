@@ -8,7 +8,7 @@ int main()
      // conectamos el tipo de archivo FILE con el puntero que apuntara al archivo en cuestion
      // fopen nos permite seleccionar nuestro archivo y dar el parametro "r" para leer, "w" para escribir etc (consultar)
      // llamamos a *prueba  DESCRIPTOR 
-    FILE *prueba = fopen("prueba.txt" , "r");
+    FILE *prueba = fopen("14 - prueba.txt" , "r");
     if(!prueba){ // si el puntero no almaceno nada
         printf("no he podido encontrar el archivo\n");
         return 1;
@@ -56,15 +56,15 @@ int main()
 
                             // fgets para leer archivo por renglones
 
+    //  Podemos definir un limite para la lectura de los caracteres como array
     char buffer[80];
 
-
-
+    // usamos fgets para leer los renlgones de menos de 80 caracteres
     do{
-        if(fgets(buffer,80,prueba)){
-                printf("resnglon: %s\n", buffer);
+        if(fgets(buffer,80,prueba)){ // importante primero fopen
+                printf("renglon: %s", buffer);
         }
-    }while (!feof(prueba));
+    }while (!feof(prueba)); // se detiene cuando acaba el archivo
 
 
                                 // fclose para cierre del archivo
