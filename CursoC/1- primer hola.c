@@ -61,7 +61,7 @@ int main(){
    /* tipos de datos */
    /* char para declarar variables de texto (se imprime con %c)*/
 
-   char C = 'de tipo numerico'; /*texto*/
+   char C = 'a'; /*texto*/
    short e = -1; /*negativos*/
    unsigned int u = 25; /* positivos */
    long l = 5932; /* datos grandes (se imrpimen como %li)*/
@@ -70,6 +70,11 @@ int main(){
    double d = 121212.221; /* numeros flotantes muy grandes se imprime con %lf o %.2lf para redondear*/
 
    printf("variable C: %c\n",C);
+
+   // el printf retorna un numero que es correspondiente al largo de la frase o palabra incluyteendo espacios
+   int largo = printf("cuarenta");
+
+   printf("la palabra cuarenta tiene %d digitos \n", largo);
 
 
    return 0;
