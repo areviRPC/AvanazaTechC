@@ -109,5 +109,7 @@ int main()
         printf("archivos no borrados");
     }
 
+    int borrado3 = remove("17 - fread con array");
+
     return 0;
 }

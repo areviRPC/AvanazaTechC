@@ -57,6 +57,9 @@ int main()
     operacion(AZUL | VERDE | PARDO);
     return 0;
 
+    // borro el archivo del compilador
+    int borrado1 = remove("13- Definiciones");
+
 }
 
 

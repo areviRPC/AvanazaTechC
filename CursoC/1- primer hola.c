@@ -76,6 +76,9 @@ int main(){
 
    printf("la palabra cuarenta tiene %d digitos \n", largo);
 
+         // borro el archivo del compilador
+         int borrado1 = remove("1- primer hola");
+
 
    return 0;
 }

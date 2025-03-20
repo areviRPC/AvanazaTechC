@@ -52,6 +52,10 @@ int main()
     printf("valor nuevo del segundo elemento: %i\n" , *(ptr_array + 1)); 
 
 
+    // borro el archivo del compilador
+    int borrado1 = remove("8- PunterosUp");
+
+
     return 0;
 
 }

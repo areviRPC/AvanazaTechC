@@ -44,6 +44,9 @@ int main()
         printf("\n");
     }
 
+    // borro el archivo del compilador
+    int borrado1 = remove("6- Anidado");
+
 
     return 0;
 }

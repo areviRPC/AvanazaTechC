@@ -44,4 +44,7 @@ int main()
     fclose(archivo_escribir);
     fclose(archivo_frase);
     // notaremos que aunque borremos los archivos estos se crean autormaicamente
+
+    // borro el archivo del compilador
+    int borrado1 = remove("15 - escribir");
 }

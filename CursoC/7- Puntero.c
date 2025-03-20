@@ -41,6 +41,10 @@ int main()
     imprimir(&c1); //aplicamos la funcion imprimir con el puntero de c1 como argumento "&c1"
 
 
+    // borro el archivo del compilador
+    int borrado1 = remove("7- Puntero");
+
+
     return 0;
 }
 

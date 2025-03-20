@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 /* existen 32 palabras reservadas que no debemos usar*/
 
 int main()
@@ -63,6 +64,9 @@ int main()
         printf("no encontramos tu caso\n");
         break;
     }
+
+    // borro el archivo del compilador
+    int borrado1 = remove("3- Type&ciclos y Switch");
 
     return 0;
 }

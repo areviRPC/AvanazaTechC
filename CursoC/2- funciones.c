@@ -45,4 +45,7 @@ long Factorial(long numero){  // tipo de retorno, tipo de dato de entrada , vari
 void cubo(int *n){ // esta funcion usa y reasigna el espacio en memoria de la variable que le pasamos
     *n = *n * *n * *n;
 
+// borro el archivo del compilador
+int borrado1 = remove("2- funciones");
+
 }

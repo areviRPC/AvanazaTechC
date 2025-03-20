@@ -22,8 +22,11 @@ int main()
     // OR si alguno de los dos es 1
     printf("a OR b %u\n", (unsigned char) (a | b));
     
-    // XOR que asigna 1 solo si uno de los dos es 1 
-    printf("a XOR b = %u\n", (unsigned char) (a ^ b));
+    // XOR que asigna 1 si y solo si uno de los dos es 1 
+    printf("a XOR b = %u\n", (unsigned char) (a ^ b)); 
+
+    // borro el archivo del compilador
+    int borrado1 = remove("12- binarios");
 
     return 0;
 }

@@ -61,5 +61,9 @@ int main(){
     // libera el espacio de memoria que paso por argumento. este no se puede volver a usar ni a borrar 
     free(ptr_calloc);
 
+    // borro el archivo del compilador
+    int borrado1 = remove("9- Malloc - calloc - realloc - free");
+
+
     return 0;
 }

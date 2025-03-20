@@ -44,5 +44,8 @@ int main(){
 
     }
 
+    // borro el archivo del compilador
+    int borrado1 = remove("10- nodos");
+
     return 0;
 }

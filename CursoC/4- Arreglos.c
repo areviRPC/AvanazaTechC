@@ -46,6 +46,9 @@ int main()
         printf("%i\n",num);
 
     }
+
+    // borro el archivo del compilador
+    int borrado1 = remove("4- Arreglos");
     
     return 0;
 }

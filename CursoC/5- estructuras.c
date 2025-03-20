@@ -38,5 +38,8 @@ int main()
     // o si es el caso accediendo diretamente a ellos 
     printf("el nombre del gato 3 es: %s y su edad es %i \n", gato1.name , gato1.edad); 
 
+    // borro el archivo del compilador
+    int borrado1 = remove("5- estructuras");
+
     return 0;
 }

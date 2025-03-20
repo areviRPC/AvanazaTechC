@@ -109,5 +109,8 @@ int main()
     printf("prueba del array: \n");
     print_array(&listaObj[2]);
 
+    int borrado3 = remove("16 - fwrite y array");
+
+
     return 0;
 }

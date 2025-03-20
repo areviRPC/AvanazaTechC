@@ -70,5 +70,9 @@ int main()
                                 // fclose para cierre del archivo
 
     fclose(prueba);  
+
+    // borro el archivo del compilador
+    int borrado1 = remove("14- archivos");
+
     
 }
