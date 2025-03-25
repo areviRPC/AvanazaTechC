@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 
 
     // lista de ingredientes
-    char* ingredients[] = {{"yeast","flour"},{"bread","meat"},{"algo mas"}};
+    char* ingredients[] = {{"yeast","flour"},{"bread","meat"}};
     int ingredientsSize =  (sizeof(ingredients)/(sizeof(ingredients[0][0]) * sizeof(ingredients[0])) );
     ;
     // tamaño de los subelementos
