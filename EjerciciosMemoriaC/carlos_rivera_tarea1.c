@@ -71,10 +71,14 @@ void filtro_estudiantes(struct Estudiantes *estudiante){
 
                             // main
 
-int main() {
+int main(int argc, char *argv[]) {
                                             // extraccion del documento con fopen
-    
-    FILE *file = fopen("sample_data.bin", "rb");
+    // Leer parámetros de la línea de comandos
+    char *filename = argv[1];
+    int menor = atoi(argv[2]);
+    int mayor = atoi(argv[3]);
+
+    FILE *file = fopen(filename, "rb");
     if (!file) {
         perror("No se pudo abrir el archivo");
         return 1;
@@ -123,15 +127,6 @@ int main() {
     // impresion del enacabezado
     print_encabezado(&header);
 
-
-    int mayor;
-    int menor;
-
-    printf("ingrese el limite mayor al que desea filtrar: ");
-    scanf("%d" , &mayor);
-    printf("ingrese el limite menor al que desea filtrar: ");
-    scanf("%d" , &menor);
-
     printf("filtro estudiantes:\n");
     for (int i = 0; i < numEstudiantes; i++){
         
@@ -144,3 +139,12 @@ int main() {
 
     return 0;
 }
+
+                                         // NOTA
+// Para que este archivo se ejecute desde la consola ingresamos los argumentos de la main al inicio de la misma
+// modificando el "filename*" y poniendo este en donde se leera nuestro archivo
+// y definiendo el mayor y el menor como argumentos de la funcion que se ingresan desde la consola 
+
+// para correr nos paramos en consola y ejecutamos
+// gcc carlos_rivera_tarea1.c -o filtroEstudiantes.out (para crear el archivo ejecutable que puede tener cualquier nombre)
+//  ./filtroEstudiantes.out sample_data.bin 25 20 (para dar los 3 argumentos, nombre del archivo , menor y mayor)
