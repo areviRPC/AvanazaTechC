@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 #pragma pack(push, 1) // Para evitar relleno
 
 
@@ -31,11 +32,21 @@ struct Cursos {
 // Estructura para la matricula
 struct Matriculas {
     uint32_t IdEstudiante;
-    uint32_t idCursoMatr;
-    
+    uint32_t idCursoMatr;  
     uint32_t año;
     uint32_t Semestre;
 };
+
+// Estructura filtroCursos
+
+struct FiltroCurso {
+    uint32_t filtroId;
+    char cursoName[32];
+    uint32_t sumaEdades;
+    uint32_t conteoEstudiantes; 
+};
+
+// Estructura del 
 
                                 // funciones de impresion 
 
@@ -45,47 +56,29 @@ void print_encabezado(struct Header *header){
     header->studentCount , header->courseCount , header->enrollmentCount);
 }
 
-// impresion estudiantes
-void print_estudiantes(struct Estudiantes *estudiante){
-
-    // Extraer banderas
-    uint8_t isFemale = (estudiante->bandera & 0x80) >> 7; // Bit más significativo (F)
-    uint8_t isPostgrad = (estudiante->bandera & 0x40) >> 6; // Segundo bit más significativo (G) 
-    
-    printf("id: %u \nEl nombre del estudiante es: %s\nedad: %u \ngenero: %s\nnivel: %s\n\n", 
-        estudiante->ID_Estudiante , estudiante->nombre , estudiante->edad ,
-        isFemale? "Femenino" : "Masculino",isPostgrad? "Pregrado" : "Posgrado");
-}
-
-// filtro de estudiantes
-void filtro_estudiantes(struct Estudiantes *estudiante){
-
-    // Extraer banderas
-    uint8_t isFemale = (estudiante->bandera & 0x80) >> 7; // Bit más significativo (F)
-    uint8_t isPostgrad = (estudiante->bandera & 0x40) >> 6; // Segundo bit más significativo (G) 
-    
-    printf("Nombre: %-23s || edad: %u || genero: %s\n", 
-        estudiante->nombre , estudiante->edad , isFemale? "Femenino" : "Masculino");
-}
-
 // impresion de cursos
 void print_cursos(struct Cursos *curso){
     printf("idCurso: %u\nNombre del curso: %s\nHoras: %u\n\n",
     curso->ID_Curso , curso->nombre , curso->horas );
 }
 
-// impresion de matricula
-void print_matricula(struct Matriculas *matricula){
-    printf("id Estudiante: %u\nId Curso %u\nAño de matricula: %u\nSemestre: %u\n\n",
-    matricula->IdEstudiante , matricula->idCursoMatr , matricula->año , matricula->Semestre);
+// impresion de filtros de cursos
+void printfiltro_cursos(struct FiltroCurso *filtroCurso , float promedio ){
+    printf(" %-20s - %.2f\n",
+    filtroCurso->cursoName , promedio);
 }
+
+
 
                             // main
 
-int main() {
+int main(int argc, char *argv[]) {
                                             // extraccion del documento con fopen
     
-    FILE *file = fopen("sample_data.bin", "rb");
+
+    char *filename = argv[1];
+    
+    FILE *file = fopen( filename, "rb");
     if (!file) {
         perror("No se pudo abrir el archivo");
         return 1;
@@ -115,7 +108,7 @@ int main() {
     long numMatriculas = (long)header.enrollmentCount;
 
 
-                                                // lectura del resto del documento
+                                            // lectura del resto del documento
 
     // lectura y guardado de todos los estudiantes en un array
 
@@ -127,6 +120,19 @@ int main() {
     struct Cursos curso[numCursos];
     fread(&curso , sizeof(struct Cursos) , numCursos , file);
 
+
+    // relleno los nombres de los cursos para la nueva estrcutura
+
+    struct FiltroCurso filtroCurso[numCursos];
+    
+    for (int i = 0; i < numCursos; i++){
+        filtroCurso[i].filtroId = curso[i].ID_Curso;
+        strcpy(filtroCurso[i].cursoName , curso[i].nombre); 
+        filtroCurso[i].conteoEstudiantes = 0;
+        filtroCurso[i].sumaEdades = 0;
+    }
+    
+
     // Lectura y guarado de matriculas en un array
     struct Matriculas matricula[numMatriculas];
     fread(&matricula , sizeof(struct Matriculas) , numMatriculas , file);
@@ -136,39 +142,53 @@ int main() {
     // impresion del enacabezado
     print_encabezado(&header);
 
-    // impresion de estudiantes 
-    for (int i = 0; i < 1; i++){
-        print_estudiantes((&estudiante[i]));
+
+
+                                        // funcion para filtro de cursos
+
+
+    for (int i = 0; i <  numMatriculas; i++){
+
+        for(int j = 0; j < numCursos; j++){
+
+            if (matricula[i].idCursoMatr == filtroCurso[j].filtroId){
+
+                for (int n = 0; n < numEstudiantes; n++){
+
+                    if(matricula[i].IdEstudiante == estudiante[n].ID_Estudiante){
+                        
+                        filtroCurso[j].sumaEdades += estudiante[n].edad;
+                        filtroCurso[j].conteoEstudiantes += 1;
+
+                    }
+                }
+            }
+        }
     }
 
-    // impresion de crusos
-    for (int i = 0; i < 1; i++){
-        print_cursos((&curso[i]));
-    }
+    // impresion filtro cursos
+    for (int x = 0; x < numCursos; x++){
+        float promedio = 0;
+        if (filtroCurso[x].conteoEstudiantes == 0){
+            promedio = 0;
+        }else{
+            float promedio = (((float) filtroCurso[x].sumaEdades)/filtroCurso[x].conteoEstudiantes); 
+            printfiltro_cursos(&filtroCurso[x] , promedio);
+        }
 
-    // impresion matricula
-    for (int i = 0; i < 1; i++){
-        print_matricula((&matricula[i]));
     }
     
-
-    int mayor;
-    int menor;
-
-    printf("ingrese el limite mayor al que desea filtrar: ");
-    scanf("%d" , &mayor);
-    printf("ingrese el limite menor al que desea filtrar: ");
-    scanf("%d" , &menor);
-
-    printf("filtro estudiantes:\n");
-    for (int i = 0; i < numEstudiantes; i++){
-        
-        if(mayor >= estudiante[i].edad && estudiante[i].edad >= menor){
-            filtro_estudiantes((&estudiante[i]));    
-        }
-        
-    }
+    
     
 
     return 0;
 }
+
+                                         // NOTA
+// Para que este archivo se ejecute desde la consola ingresamos los argumentos de la main al inicio de la misma
+// modificando el "filename*" y poniendo este en donde se leera nuestro archivo
+// y definiendo el mayor y el menor como argumentos de la funcion que se ingresan desde la consola 
+
+// para correr nos paramos en consola y ejecutamos
+// gcc carlos_rivera_tarea2.c -o filtroCursos.out (para crear el archivo ejecutable que puede tener cualquier nombre)
+//  ./filtroCursos.out sample_data.bin (solo 1 argumento correspondiendote a la cocumentacion)

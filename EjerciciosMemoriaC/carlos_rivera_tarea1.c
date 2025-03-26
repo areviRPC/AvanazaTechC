@@ -147,4 +147,4 @@ int main(int argc, char *argv[]) {
 
 // para correr nos paramos en consola y ejecutamos
 // gcc carlos_rivera_tarea1.c -o filtroEstudiantes.out (para crear el archivo ejecutable que puede tener cualquier nombre)
-//  ./filtroEstudiantes.out sample_data.bin 25 20 (para dar los 3 argumentos, nombre del archivo , menor y mayor)
+//  ./filtroEstudiantes.out sample_data.bin 20 25 (para dar los 3 argumentos, nombre del archivo , menor y mayor)
