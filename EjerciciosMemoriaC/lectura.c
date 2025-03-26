@@ -135,7 +135,7 @@ int main() {
     }
 
     // impresion de matricula
-    for (int i = 0; i < numMatriculas; i++){
+    for (int i = 0; i < 500; i++){
         print_matricula((&matricula[i]));
     }
     

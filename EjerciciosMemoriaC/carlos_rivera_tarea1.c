@@ -38,24 +38,6 @@ struct Matriculas {
 
                                 // funciones de impresion 
 
-// impresion encabeazdo 
-void print_encabezado(struct Header *header){
-    printf("Numero de estudiantes: %u\nNumero de cursos: %u\nNumero de matriculas: %u\n\n",
-    header->studentCount , header->courseCount , header->enrollmentCount);
-}
-
-
-// impresion estudiantes
-void print_estudiantes(struct Estudiantes *estudiante){
-
-    // Extraer banderas
-    uint8_t isFemale = (estudiante->bandera & 0x80) >> 7; // Bit más significativo (F)
-    uint8_t isPostgrad = (estudiante->bandera & 0x40) >> 6; // Segundo bit más significativo (G) 
-    
-    printf("id: %u \nEl nombre del estudiante es: %s\nedad: %u \ngenero: %s\nnivel: %s\n\n", 
-        estudiante->ID_Estudiante , estudiante->nombre , estudiante->edad ,
-        isFemale? "Femenino" : "Masculino",isPostgrad? "Pregrado" : "Posgrado");
-}
 
 // filtro de estudiantes
 void filtro_estudiantes(struct Estudiantes *estudiante){
@@ -64,7 +46,7 @@ void filtro_estudiantes(struct Estudiantes *estudiante){
     uint8_t isFemale = (estudiante->bandera & 0x80) >> 7; // Bit más significativo (F)
     uint8_t isPostgrad = (estudiante->bandera & 0x40) >> 6; // Segundo bit más significativo (G) 
     
-    printf("Nombre: %-23s || edad: %u || genero: %s\n", 
+    printf("%-23s | %2u | %s\n", 
         estudiante->nombre , estudiante->edad , isFemale? "Femenino" : "Masculino");
 }
 
@@ -124,8 +106,6 @@ int main(int argc, char *argv[]) {
                                         
                                         // impresiones
 
-    // impresion del enacabezado
-    print_encabezado(&header);
 
     printf("filtro estudiantes:\n");
     for (int i = 0; i < numEstudiantes; i++){

@@ -50,24 +50,12 @@ struct FiltroCurso {
 
                                 // funciones de impresion 
 
-// impresion encabeazdo 
-void print_encabezado(struct Header *header){
-    printf("Numero de estudiantes: %u\nNumero de cursos: %u\nNumero de matriculas: %u\n\n",
-    header->studentCount , header->courseCount , header->enrollmentCount);
-}
-
-// impresion de cursos
-void print_cursos(struct Cursos *curso){
-    printf("idCurso: %u\nNombre del curso: %s\nHoras: %u\n\n",
-    curso->ID_Curso , curso->nombre , curso->horas );
-}
 
 // impresion de filtros de cursos
 void printfiltro_cursos(struct FiltroCurso *filtroCurso , float promedio ){
-    printf(" %-20s - %.2f\n",
+    printf(" %-35s - %.1f\n",
     filtroCurso->cursoName , promedio);
 }
-
 
 
                             // main
@@ -83,7 +71,6 @@ int main(int argc, char *argv[]) {
         perror("No se pudo abrir el archivo");
         return 1;
     }
-
 
 
                                             // lectura del encabezado 
@@ -121,7 +108,7 @@ int main(int argc, char *argv[]) {
     fread(&curso , sizeof(struct Cursos) , numCursos , file);
 
 
-    // relleno los nombres de los cursos para la nueva estrcutura
+    // relleno el objeto filtroCurso con los nombres de los cursos, el Id y los contadores
 
     struct FiltroCurso filtroCurso[numCursos];
     
@@ -137,11 +124,6 @@ int main(int argc, char *argv[]) {
     struct Matriculas matricula[numMatriculas];
     fread(&matricula , sizeof(struct Matriculas) , numMatriculas , file);
                                         
-                                        // impresiones
-
-    // impresion del enacabezado
-    print_encabezado(&header);
-
 
 
                                         // funcion para filtro de cursos
@@ -166,13 +148,15 @@ int main(int argc, char *argv[]) {
         }
     }
 
+                                            // impresiones
+
     // impresion filtro cursos
     for (int x = 0; x < numCursos; x++){
         float promedio = 0;
         if (filtroCurso[x].conteoEstudiantes == 0){
             promedio = 0;
         }else{
-            float promedio = (((float) filtroCurso[x].sumaEdades)/filtroCurso[x].conteoEstudiantes); 
+            float promedio = (((float) filtroCurso[x].sumaEdades)/((float)(filtroCurso[x].conteoEstudiantes))); 
             printfiltro_cursos(&filtroCurso[x] , promedio);
         }
 
