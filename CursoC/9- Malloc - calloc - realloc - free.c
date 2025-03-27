@@ -8,7 +8,9 @@ int main(){
     // declaro un apuntador
     int *ptr_array; 
 
-    // uso malloc para separar un epsacio de memoria cuyo argumento es el espacio de la variable por la cantidad de elementos
+    // uso malloc para separar un epsacio de memoria cuyo argumento 
+    // es el espacio de la variable por la cantidad de elementos
+    // El (int*) le dice a malloc para que tipo de dato va a asignar  
     ptr_array = (int*) malloc(sizeof(int)* 6);
 
     // asigno dos valores a las primeras posiciones
@@ -28,10 +30,12 @@ int main(){
     // declaor un apuntador malloc 
     int *ptr_malloc;
 
-    // uso malloc para separar un epsacio de memoria cuyo argumento es el espacio de la variable por la cantidad de elementos
+    // uso malloc para separar un epsacio de memoria cuyo argumento 
+    // es el espacio de la variable por la cantidad de elementos
     ptr_malloc = (int*) malloc(sizeof(int)* 6);
 
-    // no importa si asigno o no valores a los elementos declarados. igual se van a guardar en espacios al azar
+    // no importa si asigno o no valores a los elementos declarados. 
+    // igual se van a guardar en espacios al azar
     printf("direccion de memoria primer elemento malloc %p\n", ptr_malloc);
     printf("valor de [0] sin asignar: %i\n", *ptr_malloc);
     printf("valor de [1] sin asignar: %i\n", *(ptr_malloc + 1));
@@ -42,7 +46,8 @@ int main(){
     // declaro un apuntador calloc
     int *ptr_calloc;
 
-    // recibe como argumentos la cantidad de elementos y el tamaño de espacio que voy a guardar
+    // recibe como argumentos la cantidad de elementos 
+    // y el tamaño de espacio que voy a guardar
     ptr_calloc = (int*) calloc(6, sizeof(int));
 
     // con calloc separo el espacio de memoria y todos los elementos son 0
@@ -54,11 +59,13 @@ int main(){
 
                             // realloc
 
-    // realloc reasigna el espacio de memoria. Si trato de acceder a  un elemento que no existe saca un null
+    // realloc reasigna el espacio de memoria. Si trato de acceder 
+    // a un elemento que no existe saca un null
     ptr_calloc = (int*) realloc(ptr_calloc , 2);
     printf("reasignacion de direccion de memoria del calloc %p\n", ptr_malloc);
 
-    // libera el espacio de memoria que paso por argumento. este no se puede volver a usar ni a borrar 
+    // libera el espacio de memoria que paso por argumento. 
+    // este no se puede volver a usar ni a borrar 
     free(ptr_calloc);
 
     // borro el archivo del compilador

@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-// dado una lista de binarios queremos saber cuantas veces debo invertir el valor de grupos de 3 para que todos sean 1.
+// dado una lista de binarios queremos saber cuantas 
+// veces debo invertir el valor de grupos de 3 para que todos sean 1.
 // si es imposible decirlo tambien
 
 int main()
@@ -22,11 +23,11 @@ int main()
             for(int j = 0; j < 3; j++){
 
                 // la operacion XOR reemplaza cada indice con su contrario 
-                // XOR retorna 1 si y solo si unicamente uno de los dos es 1, de lo contrario retorna 0  
+                // XOR retorna 1 si y solo si unicamente uno de 
+                // los dos es 1, de lo contrario retorna 0  
                 lista[i + j] = lista[i + j] ^ 1;
             }
-            
-            
+                     
             repeticiones = repeticiones + 1;
             
             // imprimo la lista en cada repeticion
@@ -43,7 +44,6 @@ int main()
     }else{
         printf("cambio exitoso \n");
     } 
-
     // borro el archivo del compilador
     int borrado1 = remove("19- ejercico binarios");
 

@@ -14,13 +14,15 @@ struct dog // definimos los perros
     struct owner ownerDog; // los dueños son un atributo mas de los perros y ahi se llenan
 }dogos[lengt], // declaramos una lista de perros definida por nuestra constante
 peluchin = {"jose", 35 , {"anibal" , "calle 65"} }; 
-// podemos rellenar los atributos del un perro y su dueño como un solo objeto, respetando el orden. (cuidado con la declaracion)
+// podemos rellenar los atributos del un perro y su dueño como un solo objeto, 
+// respetando el orden. (cuidado con la declaracion)
 
 
 
 int main()
 {
-    printf("el nombre es %s y el nombre del dueño es %s \n" , peluchin.name , peluchin.ownerDog.nombre); // asi podemos imprimir un objeto que ya existe fuera de la lista
+    // asi podemos imprimir un objeto que ya existe fuera de la lista
+    printf("el nombre es %s y el nombre del dueño es %s \n" , peluchin.name , peluchin.ownerDog.nombre); 
 
     for(int i = 0;i< lengt ; ++i){ // ciclo definido por la constante
         // accedemos a cada indice de los perros y asignamos valores

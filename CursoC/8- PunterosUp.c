@@ -10,7 +10,6 @@ void cambio(int *ptr_array){ // creamos una funcion que recibe el valor guardado
 
 int main()
 {
-
     int valor = 6; 
     // * para declarar apuntadores (especificamos que tipo de dato va a apuntar)
     // (int *ptr_inutil = valor) esto no tiene sentido porque lo que estamos haciendo es asignarle al apuntador la direccion de "2" 
@@ -18,8 +17,6 @@ int main()
 
     int *apuntar = ptr_valor;
     printf("apuntaaaaaar %p\n", &apuntar);
-
-
     printf("direccion de memoria de la variable %p\n", &valor);
     printf("valor del apuntador  %p\n", ptr_valor );
     printf("valor de la variable %i\n", valor);
@@ -44,17 +41,13 @@ int main()
     printf("direccion 1 (no cambia): %p\n" , ptr_array);
 
                                     // con una funcion
-
-
     printf("--funcion-- \n");
     printf("direccion 2 orginal: %p\n" , ptr_array + 1); 
     cambio(&array[1]); // pasamos como argumento el apuntador a la 
     printf("valor nuevo del segundo elemento: %i\n" , *(ptr_array + 1)); 
 
-
     // borro el archivo del compilador
     int borrado1 = remove("8- PunterosUp");
-
 
     return 0;
 

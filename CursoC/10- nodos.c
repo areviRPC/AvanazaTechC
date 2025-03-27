@@ -19,17 +19,20 @@ int main(){
     // llenamos sus atributos
     cabeza.valor = 13;
     cabeza.peso = 23;
-    cabeza.siguiente = &segundo; // el ultimo atributo apunta al espacio de memoria del siguiente nodo
+    cabeza.siguiente = &segundo; 
+    // el ultimo atributo apunta al espacio de memoria del siguiente nodo
 
     // llenamos el segundo nodo
     segundo.valor = 2;
     segundo.peso = 22;
-    segundo.siguiente = &tercero; // el ultimo atributo apunta al siguiente nodo 
+    segundo.siguiente = &tercero; 
+    // el ultimo atributo apunta al siguiente nodo 
 
     // llenamos el tercer nodo
     tercero.valor = 0;
     tercero.peso = 0;
-    tercero.siguiente = NULL; // el ultimo atributo es NUll por lo que es el final de nuestra fila de nodos
+    tercero.siguiente = NULL; 
+    // el ultimo atributo es NUll por lo que es el final de nuestra fila de nodos
 
     // definimos un iterador de tipo NODO. Este apunta al primer nodo de nuestra fila 
     Nodo *iterador = &cabeza; 
@@ -39,11 +42,10 @@ int main(){
     {
         printf("valor: %d\n", iterador->valor);
         printf("peso: %d\n", iterador->peso);
-        iterador = iterador->sigu iente; // convertimos al iterador en el "siguiente" nodo que esta guardado en el ultimo atributo del objeto
+        iterador = iterador->siguiente; 
+        // convertimos al iterador en el "siguiente" nodo que esta guardado en el ultimo atributo del objeto
         printf("siguiente nodo \n");
-
     }
-
     // borro el archivo del compilador
     int borrado1 = remove("10- nodos");
 
